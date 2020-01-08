@@ -8,5 +8,7 @@ import java.util.*
 val formatoBrasileiro: NumberFormat = DecimalFormat.getCurrencyInstance(Locale("pt", "br"))
 
 fun BigDecimal.formataParaBrasileiro(): String {
-    return formatoBrasileiro.format(this)
+    return formatoBrasileiro
+        .format(this)
+        .replace("-R$", "R$ -")
 }
