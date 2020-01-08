@@ -50,20 +50,6 @@ class ListaTransacoesAdapter(
         viewCriada.transacao_valor.setTextColor(corPor(transacao))
     }
 
-    private fun corPor(transacao: Transacao): Int {
-        return if (transacao.tipo == Tipo.RECEITA) {
-            ContextCompat.getColor(
-                context,
-                R.color.receita
-            )
-        } else {
-            ContextCompat.getColor(
-                context,
-                R.color.despesa
-            )
-        }
-    }
-
     private fun configuraIconeTipo(
         transacao: Transacao,
         viewCriada: View
@@ -72,11 +58,18 @@ class ListaTransacoesAdapter(
     }
 
     private fun iconePor(transacao: Transacao): Int {
-        return if (transacao.tipo == Tipo.RECEITA) {
-            (R.drawable.icone_transacao_item_receita)
-        } else {
-            R.drawable.icone_transacao_item_despesa
+        return when (transacao.tipo) {
+            Tipo.RECEITA -> R.drawable.icone_transacao_item_receita
+            Tipo.DESPESA -> R.drawable.icone_transacao_item_despesa
         }
+    }
+
+    private fun corPor(transacao: Transacao): Int {
+        return when (transacao.tipo) {
+            Tipo.RECEITA -> ContextCompat.getColor(context, R.color.receita)
+            Tipo.DESPESA -> ContextCompat.getColor(context, R.color.despesa)
+        }
+
     }
 
     override fun getItem(position: Int): Transacao {
