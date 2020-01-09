@@ -41,7 +41,6 @@ class ResumoView(
 
     private fun adicionaTotal() {
         val total = resumo.total
-
         with(view.resumo_card_total) {
             text = total.formataParaBrasileiro()
             setTextColor(corPor(total))
